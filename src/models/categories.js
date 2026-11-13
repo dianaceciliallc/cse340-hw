@@ -11,4 +11,4 @@ const getAllCategories = async () => {
     return result.rows;
 }
 
-export { getAllCategories};
+export { getAllCategories };
