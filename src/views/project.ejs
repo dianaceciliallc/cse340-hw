@@ -9,5 +9,19 @@
         <strong>Organization:</strong>
         <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
     </p>
+    <div>
+        <strong>Categories:</strong>
+        <% if (categories && categories.length > 0) { %>
+            <ul>
+                <% categories.forEach(category => { %>
+                    <li>
+                        <a href="/category/<%= category.category_id %>"><%= category.category_name %></a>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <span>None</span>
+        <% } %>
+    </div>
 </main>
 <%- include('partials/footer') %>

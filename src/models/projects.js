@@ -95,9 +95,34 @@ async function getProjectDetails(id) {
   }
 }
 
+async function getProjectsByCategoryId(categoryId) {
+  try {
+    const query = `
+      SELECT
+        p.project_id,
+        p.organization_id,
+        p.title,
+        p.description,
+        p.location,
+        p.project_date
+      FROM service_projects p
+      JOIN project_categories pc ON p.project_id = pc.project_id
+      WHERE pc.category_id = $1
+      ORDER BY p.project_date ASC;
+    `;
+    const queryParams = [categoryId];
+    const result = await db.query(query, queryParams);
+    return result.rows;
+  } catch (error) {
+    console.error('Error fetching projects by category ID:', error.message);
+    throw error;
+  }
+}
+
 export {
   getAllProjects,
   getProjectsByOrganizationId,
   getUpcomingProjects,
-  getProjectDetails
+  getProjectDetails,
+  getProjectsByCategoryId
 };

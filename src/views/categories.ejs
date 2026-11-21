@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <%- include('partials/header', { title: title }) %>
-</head>
-
-<body>
-  <main>
-    <h1>Service Project Categories</h1>
-    <% if (categories && categories.length > 0) { %>
-      <ul>
+<%- include('partials/header') %>
+<main>
+    <h1><%= title %></h1>
+    <ul>
         <% categories.forEach(category => { %>
-          <li>
-            <%= category.category_name %>
-          </li>
-        <% }) %>
-      </ul>
-    <% } else { %>
-      <p>No categories found.</p>
-    <% } %>
-  </main>
-  <%- include('partials/footer') %>
-</body>
-
-</html>
+            <li>
+                <a href="/category/<%= category.category_id %>"><%= category.category_name %></a>
+            </li>
+        <% }); %>
+    </ul>
+</main>
+<%- include('partials/footer') %>
